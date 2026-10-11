@@ -7,12 +7,12 @@
     "longitude": "XMP:Longitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
     "serial_number": "XMP:CameraSerialNumber",
-    "date": "XMP:CreateDate",
+    "date": "EXIF:DateTimeOriginal",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "Serial was the model name (EXIF:Model) until 2026-10-11. Camera serial tag not yet checked against a photo.",
+  "notes": "Serial was the model name (EXIF:Model) until 2026-10-11. Camera serial tag not yet checked against a photo. Date was XMP:CreateDate until 2026-10-11 (on some DJI firmware it holds only the day, not the time); now the capture date. Not yet checked against a photo from this camera.",
   "contributor": "",
   "updated": "2026-10-11"
 }

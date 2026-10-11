@@ -42,9 +42,10 @@ Access Token, set in **Settings › Sharing profiles**. No token? Choose
   never the model name or another stand-in, and not the aircraft's serial. If
   the camera records none, map it to `null` and say so in `notes`: Gimballer
   flags those rows `Error: No SerialNumber`. `validate.py` rejects anything else.
-- Date is a capture date (`EXIF:CreateDate` / `DateTimeOriginal` /
-  `XMP:CreateDate`), not a filesystem date (`File:*`), unless the camera
-  writes nothing else.
+- Date is the **capture date** the camera recorded (`EXIF:DateTimeOriginal`
+  preferred), never a file date (`File:*`, which is when the file was copied
+  or changed). If the camera records none, map it to `null`: Gimballer flags
+  those rows `Error: No Date`. `validate.py` rejects file dates.
 
 ## Profiles that still need checking against real photos
 
@@ -56,6 +57,7 @@ the camera to confirm:
 | `FLIR Systems/XT2.json` | `gimbal_pitch` is now `XMP:GimbalPitchDegree` (it was the lens field of view). Present in FLIR-made images? |
 | `DJI/FC2103.json`, `DJI/FC2403.json`, `DJI/ZENMUSE Z30.json` | `serial_number` is now `XMP:CameraSerialNumber` (it was the model name). Does the camera write it? If not, use `null` |
 | `DJI/M3E.json`, `DJI/M3TD.json` | `XMP:CameraSerialNumber` assumed from the M3T |
+| `DJI/FC2103.json`, `DJI/FC4370.json`, `DJI/ZenmuseP1.json`, `Hasselblad/L2D-20c.json` | `date` is now `EXIF:DateTimeOriginal` (it was `XMP:CreateDate`, which some DJI firmware writes without the time) |
 | `DJI/ZH20T.json`, `DJI/FC3170.json`, `DJI/FC4170.json`, `DJI/FC6540.json`, `Hasselblad/L1D-20c.json`, `Hasselblad/L2D-20c.json` | `serial_number` is `EXIF:SerialNumber`: the camera's serial, or the aircraft's? |
 | `Phase One/iXM-100.json`, `Parrot/*.json`, `Skydio/*.json` | Does straight down read −90 in their pitch tags? |
 

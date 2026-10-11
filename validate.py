@@ -14,9 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent / "profiles"
 FIELDS = ("latitude", "longitude", "gimbal_pitch", "serial_number", "date", "make", "model", "altitude")
-REQUIRED = ("latitude", "longitude", "gimbal_pitch", "date")
-# serial_number is optional (some cameras record none; Gimballer flags those rows) but, when set,
-# must be the camera's own serial: never Make/Model or another stand-in, never the aircraft's.
+REQUIRED = ("latitude", "longitude", "gimbal_pitch")
+# serial_number and date are optional (some cameras record none; Gimballer flags those rows) but,
+# when set, serial_number must be the camera's own serial (never Make/Model or another stand-in,
+# never the aircraft's) and date must be the capture date the camera wrote (never a File:* date).
 NOT_CAMERA_SERIAL = ("drone", "aircraft")
 KEYWORDS = {"latitude": "lat", "longitude": "lon", "gimbal_pitch": "pitch", "serial_number": "serial",
             "date": "date", "make": "make", "model": "model", "altitude": "alt"}
@@ -74,6 +75,10 @@ def check(path: Path, seen: dict) -> tuple[list[str], list[str]]:
                           "serial, use null (Gimballer flags those rows); never a stand-in such as the model")
         elif name == "serial_number" and any(w in tag.split(":", 1)[1].casefold() for w in NOT_CAMERA_SERIAL):
             errors.append(f"serial_number -> {tag}: must be the camera's serial, not the aircraft's")
+        elif name == "date" and (tag.split(":", 1)[0].casefold() in ("file", "system")
+                                 or tag.split(":", 1)[1].casefold().startswith("file")):
+            errors.append(f"date -> {tag}: must be the capture date the camera recorded, not a file date "
+                          "(when the file was copied or changed). If the camera records none, use null")
         elif KEYWORDS.get(name, "") not in tag.split(":", 1)[1].casefold():
             warnings.append(f"{name} -> {tag}: tag name doesn't mention '{KEYWORDS[name]}' — double-check")
     for name in ("notes", "contributor", "updated"):
