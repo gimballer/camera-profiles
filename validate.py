@@ -14,7 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent / "profiles"
 FIELDS = ("latitude", "longitude", "gimbal_pitch", "serial_number", "date", "make", "model", "altitude")
-REQUIRED = ("latitude", "longitude", "gimbal_pitch", "serial_number", "date")
+REQUIRED = ("latitude", "longitude", "gimbal_pitch", "date")
+# serial_number is optional (some cameras record none; Gimballer flags those rows) but, when set,
+# must be the camera's own serial: never Make/Model or another stand-in, never the aircraft's.
+NOT_CAMERA_SERIAL = ("drone", "aircraft")
 KEYWORDS = {"latitude": "lat", "longitude": "lon", "gimbal_pitch": "pitch", "serial_number": "serial",
             "date": "date", "make": "make", "model": "model", "altitude": "alt"}
 TAG_RE = re.compile(r"^[A-Za-z0-9_\-]+:[A-Za-z0-9_\-]+$")
@@ -66,6 +69,11 @@ def check(path: Path, seen: dict) -> tuple[list[str], list[str]]:
             continue
         if not isinstance(tag, str) or not TAG_RE.match(tag):
             errors.append(f"field '{name}' must be a 'Group:Tag' string or null, got {tag!r}")
+        elif name == "serial_number" and "serial" not in tag.split(":", 1)[1].casefold():
+            errors.append(f"serial_number -> {tag}: must be a serial-number tag. If the camera records no "
+                          "serial, use null (Gimballer flags those rows); never a stand-in such as the model")
+        elif name == "serial_number" and any(w in tag.split(":", 1)[1].casefold() for w in NOT_CAMERA_SERIAL):
+            errors.append(f"serial_number -> {tag}: must be the camera's serial, not the aircraft's")
         elif KEYWORDS.get(name, "") not in tag.split(":", 1)[1].casefold():
             warnings.append(f"{name} -> {tag}: tag name doesn't mention '{KEYWORDS[name]}' — double-check")
     for name in ("notes", "contributor", "updated"):

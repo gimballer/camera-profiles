@@ -7,12 +7,12 @@
     "longitude": "XMP:GPSLongitude",
     "gimbal_pitch": "XMP:CameraPitchDegree",
     "serial_number": "EXIF:SerialNumber",
-    "date": "File:FileModifyDate",
+    "date": "EXIF:DateTimeOriginal",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Date was File:FileModifyDate (when the file was last changed) until 2026-10-11.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

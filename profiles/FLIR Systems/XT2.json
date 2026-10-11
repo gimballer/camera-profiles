@@ -5,14 +5,14 @@
   "fields": {
     "latitude": "APP1:GPSLatitude",
     "longitude": "APP1:GPSLongitude",
-    "gimbal_pitch": "APP1:FieldOfView",
+    "gimbal_pitch": "XMP:GimbalPitchDegree",
     "serial_number": "APP1:CameraSerialNumber",
     "date": "EXIF:CreateDate",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Gimbal pitch was APP1:FieldOfView (the lens field of view) until 2026-10-11. XMP:GimbalPitchDegree is not yet checked against a photo from this camera.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

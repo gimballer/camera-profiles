@@ -6,13 +6,13 @@
     "latitude": "Composite:GPSLatitude",
     "longitude": "Composite:GPSLongitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
-    "serial_number": "EXIF:Model",
+    "serial_number": "XMP:CameraSerialNumber",
     "date": "EXIF:CreateDate",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Serial was the model name (EXIF:Model) until 2026-10-11. The 148 photos checked record no serial at all, so their rows are flagged Error: No SerialNumber.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

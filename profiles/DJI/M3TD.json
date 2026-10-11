@@ -6,13 +6,13 @@
     "latitude": "Composite:GPSLatitude",
     "longitude": "Composite:GPSLongitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
-    "serial_number": "EXIF:SerialNumber",
+    "serial_number": "XMP:CameraSerialNumber",
     "date": "EXIF:CreateDate",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Camera serial tag as on the M3T; not yet checked against an M3TD photo.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

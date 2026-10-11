@@ -6,13 +6,13 @@
     "latitude": "Composite:GPSLatitude",
     "longitude": "Composite:GPSLongitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
-    "serial_number": "EXIF:Model",
+    "serial_number": "XMP:CameraSerialNumber",
     "date": "EXIF:CreateDate",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Serial was the model name (EXIF:Model) until 2026-10-11. Camera serial tag not yet checked against a photo.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

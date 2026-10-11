@@ -9,7 +9,7 @@
     "latitude": "Composite:GPSLatitude",
     "longitude": "Composite:GPSLongitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
-    "serial_number": "EXIF:SerialNumber",
+    "serial_number": "XMP:CameraSerialNumber",
     "date": "EXIF:CreateDate",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
@@ -37,7 +37,7 @@
 | `latitude` | yes | `Latitude` | Signed decimal degrees. DMS strings and XMP `DD,MM.mmN` are converted. `EXIF:GPSLatitude` is signed using `EXIF:GPSLatitudeRef`. |
 | `longitude` | yes | `Longitude` | As latitude. |
 | `gimbal_pitch` | yes | `GimbalPitchDegree` | Degrees; −90 is straight down. Drives the nadir flag (`IsPoletop`). |
-| `serial_number` | yes | `SerialNumber` | Text. |
+| `serial_number` | no | `SerialNumber` | Text: **the camera's own serial**, from a serial-number tag. Never a stand-in (Make, Model, …) and never the aircraft's serial: DJI enterprise drones write the aircraft serial to `EXIF:SerialNumber` and the camera's to `XMP:CameraSerialNumber`. If the camera records no serial, use `null`. Gimballer then writes `Error: No SerialNumber` in every row; a missing serial is always flagged, never filled in. `validate.py` enforces this. |
 | `date` | yes | `Date` | Normalized to `M/D/YYYY  H:MM:SS AM/PM` (wall-clock time as written by the camera). |
 | `make`, `model` | no | `Make`, `Model` | Text. If unmapped, the scanned Make/Model are used. |
 | `altitude` | no | `Altitude` | Number (e.g. `XMP:AbsoluteAltitude`). |

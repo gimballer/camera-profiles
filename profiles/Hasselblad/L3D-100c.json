@@ -6,13 +6,13 @@
     "latitude": "XMP:GpsLatitude",
     "longitude": "XMP:GpsLongitude",
     "gimbal_pitch": "XMP:GimbalPitchDegree",
-    "serial_number": "EXIF:SerialNumber",
-    "date": "File:FileCreateDate",
+    "serial_number": "XMP:CameraSerialNumber",
+    "date": "EXIF:DateTimeOriginal",
     "make": "EXIF:Make",
     "model": "EXIF:Model",
     "altitude": null
   },
-  "notes": "",
+  "notes": "Date was File:FileCreateDate (when the file was copied to a computer) until 2026-10-11. Camera serial checked on 300 photos.",
   "contributor": "",
-  "updated": "2026-07-28"
+  "updated": "2026-10-11"
 }

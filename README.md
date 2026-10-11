@@ -38,23 +38,26 @@ Access Token, set in **Settings › Sharing profiles**. No token? Choose
 - Coordinates should use the signed `Composite:GPSLatitude` /
   `Composite:GPSLongitude` where the camera writes standard EXIF GPS.
 - Gimbal pitch reads about −90 for a straight-down (nadir) image.
-- Serial number is a real serial. If the camera records none, say so in
-  `notes` instead of mapping a different tag.
+- Serial number is the **camera's own serial** (`XMP:CameraSerialNumber` on DJI),
+  never the model name or another stand-in, and not the aircraft's serial. If
+  the camera records none, map it to `null` and say so in `notes`: Gimballer
+  flags those rows `Error: No SerialNumber`. `validate.py` rejects anything else.
 - Date is a capture date (`EXIF:CreateDate` / `DateTimeOriginal` /
   `XMP:CreateDate`), not a filesystem date (`File:*`), unless the camera
   writes nothing else.
 
-## Profiles imported from Gimballer V2 that need review
+## Profiles that still need checking against real photos
 
-These came over unchanged from the V2 library and are worth checking against
-real images:
+Fixed on 2026-10-11 (each profile's `notes` says what changed). These still need a photo from
+the camera to confirm:
 
-| Profile | Concern |
+| Profile | What to check |
 |---|---|
-| `FLIR Systems/XT2.json` | `gimbal_pitch` maps to `APP1:FieldOfView`, which is the lens field of view, not pitch |
-| `Hasselblad/[L2D-20c].json` | `gimbal_pitch` maps to `ICC_Profile:ChromaticityColorant`; `serial_number` maps to `EXIF:Model` |
-| `DJI/FC2103.json`, `DJI/FC2403.json`, `DJI/MAVIC2-ENTERPRISE-ADVANCED.json`, `DJI/ZENMUSE Z30.json` | `serial_number` maps to `EXIF:Model` |
-| `Hasselblad/L3D-100c.json`, `Parrot/AnafiUSA.json` | `date` maps to a filesystem date (`File:FileCreateDate` / `File:FileModifyDate`) |
+| `FLIR Systems/XT2.json` | `gimbal_pitch` is now `XMP:GimbalPitchDegree` (it was the lens field of view). Present in FLIR-made images? |
+| `DJI/FC2103.json`, `DJI/FC2403.json`, `DJI/ZENMUSE Z30.json` | `serial_number` is now `XMP:CameraSerialNumber` (it was the model name). Does the camera write it? If not, use `null` |
+| `DJI/M3E.json`, `DJI/M3TD.json` | `XMP:CameraSerialNumber` assumed from the M3T |
+| `DJI/ZH20T.json`, `DJI/FC3170.json`, `DJI/FC4170.json`, `DJI/FC6540.json`, `Hasselblad/L1D-20c.json`, `Hasselblad/L2D-20c.json` | `serial_number` is `EXIF:SerialNumber`: the camera's serial, or the aircraft's? |
+| `Phase One/iXM-100.json`, `Parrot/*.json`, `Skydio/*.json` | Does straight down read −90 in their pitch tags? |
 
 ## License
 
