@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "make": "Skydio",
+  "model": "VT300-L_93",
+  "fields": {
+    "latitude": "XMP:Latitude",
+    "longitude": "XMP:Longitude",
+    "gimbal_pitch": "XMP:CameraOrientationNEDPitch",
+    "serial_number": "XMP:SerialNumber",
+    "date": "XMP:CreateDate",
+    "make": "EXIF:Make",
+    "model": "EXIF:Model",
+    "altitude": null
+  },
+  "notes": "",
+  "contributor": "",
+  "updated": "2026-07-28"
+}

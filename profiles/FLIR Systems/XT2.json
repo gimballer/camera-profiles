@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "make": "FLIR Systems",
+  "model": "XT2",
+  "fields": {
+    "latitude": "APP1:GPSLatitude",
+    "longitude": "APP1:GPSLongitude",
+    "gimbal_pitch": "APP1:FieldOfView",
+    "serial_number": "APP1:CameraSerialNumber",
+    "date": "EXIF:CreateDate",
+    "make": "EXIF:Make",
+    "model": "EXIF:Model",
+    "altitude": null
+  },
+  "notes": "",
+  "contributor": "",
+  "updated": "2026-07-28"
+}

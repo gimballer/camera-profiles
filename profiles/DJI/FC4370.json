@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "make": "DJI",
+  "model": "FC4370",
+  "fields": {
+    "latitude": "Composite:GPSLatitude",
+    "longitude": "Composite:GPSLongitude",
+    "gimbal_pitch": "XMP:GimbalPitchDegree",
+    "serial_number": "XMP:CameraSerialNumber",
+    "date": "XMP:CreateDate",
+    "make": "EXIF:Make",
+    "model": "EXIF:Model",
+    "altitude": null
+  },
+  "notes": "",
+  "contributor": "",
+  "updated": "2026-07-28"
+}

@@ -1,0 +1,2 @@
+# Profiles are versioned by their git blob SHA; keep bytes identical on every platform.
+* text=auto eol=lf
